@@ -72,7 +72,7 @@ function Home() {
         : foodHabitValue;
     setFoodHabitNames(selectedFoodHabitList);
     let givenRatingAdded = 0;
-    selectedFoodHabitList.map((element) => {
+    selectedFoodHabitList.forEach((element) => {
       givenRatingAdded += getRatingFromList(FOOD_HABITS, element);
     });
     setSelectedItemsList({
