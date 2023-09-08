@@ -1,3 +1,17 @@
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(155, 155, 155, 0.5);
+    border-radius: 20px;
+    border: transparent;
+}
+
 .home-outer {
     min-height: 100vh;
     display: flex;
@@ -24,16 +38,7 @@
     padding: 0px 15px;
 }
 
-::-webkit-scrollbar {
-    width: 5px;
-}
-
-::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-    background-color: rgba(155, 155, 155, 0.5);
-    border-radius: 20px;
-    border: transparent;
+.required:after {
+    content:" *";
+    color: #F44336;
 }

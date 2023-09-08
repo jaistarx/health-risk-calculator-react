@@ -54,3 +54,15 @@
 .single-value-card h3 {
     margin-top: 0px;
 }
+
+.low-text {
+    color: #00ff00;
+}
+
+.medium-text {
+    color: #f2ff00;
+}
+
+.high-text {
+    color: #ff0000;
+}

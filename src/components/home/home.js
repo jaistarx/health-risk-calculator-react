@@ -14,7 +14,7 @@ import {
   Tooltip,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { EXISTING_ILLINESS } from "../../constants/appConstants";
+import { EXISTING_ILLINESS, FOOD_HABITS } from "../../constants/appConstants";
 import SelectedItems from "../selectedItems/selectedItems";
 import { PrettoSlider } from "../slider/slider";
 import "./home.css";
@@ -35,39 +35,78 @@ function Home() {
     age: { value: 20, rating: 0 },
     existingIllness: { value: [], rating: 0 },
     foodType: { value: "", rating: 0 },
-    // foodHabits: { value: [], rating: 1 },
+    foodHabits: { value: [], rating: 0 },
   });
-  const [illnessNames, setIllnessNames] = React.useState([]);
-  const [ratingBool, setRatingBool] = React.useState(0);
+  const [illnessNames, setIllnessNames] = useState([]);
+  const [foodHabitNames, setFoodHabitNames] = useState([]);
+  const [ratingBool, setRatingBool] = useState(0);
 
   const handleAgeChange = (event, ageChange) => {
     setSelectedItemsList({
       ...selectedItemsList,
-      age: { value: ageChange, rating: 2 },
+      age: { value: ageChange, rating: ageChange / 100 },
     });
     calculateRatingBool();
   };
 
-  const handleIllnessChange = (event, index) => {
+  const handleIllnessChange = (event) => {
+    const illnessValue = event.target.value;
     const selectedIllnessList =
-      typeof value === "string"
-        ? event.target.value.split(",")
-        : event.target.value;
+      typeof illnessValue === "string" ? illnessValue.split(",") : illnessValue;
     setIllnessNames(selectedIllnessList);
     setSelectedItemsList({
       ...selectedItemsList,
       existingIllness: {
         value: selectedIllnessList,
-        rating: selectedIllnessList.length,
+        rating: selectedIllnessList.length / EXISTING_ILLINESS.length,
       },
     });
     calculateRatingBool();
   };
 
-  const handleFoodTypeChange = (event, newFoodType) => {
+  const handleFoodHabitChange = (event) => {
+    const foodHabitValue = event.target.value;
+    const selectedFoodHabitList =
+      typeof foodHabitValue === "string"
+        ? foodHabitValue.split(",")
+        : foodHabitValue;
+    setFoodHabitNames(selectedFoodHabitList);
+    let givenRatingAdded = 0;
+    selectedFoodHabitList.map((element) => {
+      givenRatingAdded += getRatingFromList(FOOD_HABITS, element);
+    });
     setSelectedItemsList({
       ...selectedItemsList,
-      foodType: { value: newFoodType, rating: 2 },
+      foodHabits: {
+        value: selectedFoodHabitList,
+        rating: selectedFoodHabitList.length
+          ? givenRatingAdded / selectedFoodHabitList.length
+          : 0,
+      },
+    });
+    console.log(selectedItemsList)
+    calculateRatingBool();
+  };
+
+  const handleFoodTypeChange = (event, newFoodType) => {
+    let givenRating;
+    switch (newFoodType) {
+      case "Vegetarian":
+        givenRating = 0.3;
+        break;
+      case "Non-Vegetarian":
+        givenRating = 0.5;
+        break;
+      default:
+        givenRating = 0;
+        break;
+    }
+    setSelectedItemsList({
+      ...selectedItemsList,
+      foodType: {
+        value: newFoodType,
+        rating: givenRating,
+      },
     });
     calculateRatingBool();
   };
@@ -76,14 +115,21 @@ function Home() {
     const selectedItemsListCopy = selectedItemsList;
     let addedRating = 0;
     let multipliedRating = 1;
-    Object.values(selectedItemsListCopy).forEach((value) => {
-      addedRating += value.rating;
-      multipliedRating *= value.rating;
+    Object.keys(selectedItemsListCopy).forEach((key) => {
+      if (key !== "existingIllness") {
+        multipliedRating *= selectedItemsListCopy[key].rating;
+      }
+      addedRating += selectedItemsListCopy[key].rating;
     });
     setRatingBool({
       addedRating,
       multipliedRating,
     });
+  };
+
+  const getRatingFromList = (list, item) => {
+    const listItem = list.find((element) => element.name === item);
+    return listItem.rating;
   };
 
   useEffect(() => {
@@ -113,12 +159,12 @@ function Home() {
             }}
           >
             <div>
-              <h1 className="header-text">Risk Calculator</h1>
+              <h1 className="header-text">Health Risk Calculator</h1>
               <hr className="divider-line"></hr>
             </div>
             <div className="form-outer">
               <div>
-                <h3>Select Age</h3>
+                <h3 className="required">Select Age</h3>
                 <div className="age-slider">
                   <PrettoSlider
                     valueLabelDisplay="auto"
@@ -132,7 +178,7 @@ function Home() {
               <div>
                 <h3>Existing Illness</h3>
                 <div>
-                  <FormControl sx={{ m: 1, width: "96%" }}>
+                  <FormControl sx={{ m: 1, width: 500 }}>
                     <InputLabel
                       color="success"
                       id="demo-multiple-checkbox-label"
@@ -166,7 +212,7 @@ function Home() {
                 </div>
               </div>
               <div>
-                <h3>Food Type</h3>
+                <h3 className="required">Food Type</h3>
                 <RadioGroup
                   aria-labelledby="demo-radio-buttons-group-label"
                   value={selectedItemsList.foodType.value}
@@ -187,7 +233,40 @@ function Home() {
                 </RadioGroup>
               </div>
               <div>
-                <h3>Food Habits</h3>
+                <h3 className="required">Food Habits</h3>
+                <div>
+                  <FormControl sx={{ mx: 1, mt: 1, mb: 3, width: 500 }}>
+                    <InputLabel
+                      color="success"
+                      id="demo-multiple-checkbox-label"
+                    >
+                      Select Food Habits
+                    </InputLabel>
+                    <Select
+                      labelId="demo-multiple-checkbox-label"
+                      id="demo-multiple-checkbox"
+                      multiple
+                      color="success"
+                      value={foodHabitNames}
+                      onChange={handleFoodHabitChange}
+                      input={<OutlinedInput label="Select Food Habits" />}
+                      renderValue={(selected) => selected.join(", ")}
+                      MenuProps={MenuProps}
+                    >
+                      {FOOD_HABITS.map((food, index) => (
+                        <MenuItem key={food.name} value={food.name}>
+                          <Checkbox
+                            color="success"
+                            checked={foodHabitNames.indexOf(food.name) > -1}
+                          />
+                          <Tooltip title={food.description} arrow>
+                            <ListItemText primary={food.name} />
+                          </Tooltip>
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>
+                </div>
               </div>
             </div>
           </Paper>
@@ -197,6 +276,7 @@ function Home() {
           setSelectedItemsList={setSelectedItemsList}
           ratingBool={ratingBool}
           setIllnessNames={setIllnessNames}
+          setFoodHabitNames={setFoodHabitNames}
         ></SelectedItems>
       </div>
     </>

@@ -32,12 +32,21 @@ function SelectedItems({
   setSelectedItemsList,
   ratingBool,
   setIllnessNames,
+  setFoodHabitNames,
 }) {
   const [openModal, setOpenModal] = useState(false);
   const [riskScore, setRiskScore] = useState(0);
 
   const handleOpenModal = () => {
-    setRiskScore(0.6);
+    let totalRating = 0;
+    console.log(selectedItemsList);
+    Object.values(selectedItemsList).forEach((value) => {
+      totalRating += value.rating;
+    });
+
+    setRiskScore(
+      (totalRating / Object.keys(selectedItemsList).length).toFixed(2)
+    );
     setOpenModal(true);
   };
 
@@ -48,6 +57,7 @@ function SelectedItems({
 
   const handleClearClicked = () => {
     setIllnessNames([]);
+    setFoodHabitNames([]);
     setSelectedItemsList({
       ...selectedItemsList,
       age: { value: 20, rating: 0 },
@@ -56,7 +66,7 @@ function SelectedItems({
         rating: 0,
       },
       foodType: { value: "", rating: 0 },
-      //   foodHabits: { value: [], rating: 1 },
+      foodHabits: { value: [], rating: 0 },
     });
   };
 
@@ -116,6 +126,24 @@ function SelectedItems({
                     <div>{selectedItemsList.foodType.value}</div>
                   </div>
                 )}
+                {selectedItemsList.foodHabits.rating !== 0 && (
+                  <div className="single-value-card">
+                    <h3>Food Habits</h3>
+                    <div>
+                      {selectedItemsList.foodHabits.value.map((name, index) => (
+                        <>
+                          <span>
+                            {name}
+                            {index !==
+                              selectedItemsList.foodHabits.value.length - 1 && (
+                              <>,</>
+                            )}{" "}
+                          </span>
+                        </>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
             )}
           </div>
@@ -159,7 +187,7 @@ function SelectedItems({
         <Fade in={openModal}>
           <Box sx={style}>
             <Typography id="transition-modal-title" variant="h6" component="h2">
-              Your Risk Score is
+              Your Health Risk Score is
             </Typography>
             <GaugeChart
               id="gauge-chart1"
@@ -171,8 +199,20 @@ function SelectedItems({
               needleColor="#176B87"
               needleBaseColor="#64CCC5"
             />
-            <Typography id="transition-modal-description" sx={{ mt: 2 }}>
-              Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+            <Typography
+              className="indicator-text"
+              id="transition-modal-description"
+              sx={{ mt: 2 }}
+            >
+              {riskScore >= 0 && riskScore <= 0.33 && (
+                <h4>Congrats!...Your Health Risk Score is <span className="low-text">Low</span></h4>
+              )}
+              {riskScore >= 0.34 && riskScore <= 0.64 && (
+                <h4>Your Health Risk Score is <span className="medium-text">Medium</span></h4>
+              )}
+              {riskScore >= 0.65 && riskScore <= 1 && (
+                <h4>Your Health Risk Score is <span className="high-text">High</span>...Its time to do something!</h4>
+              )}
             </Typography>
           </Box>
         </Fade>
