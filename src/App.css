@@ -1,5 +1,5 @@
 .app {
   text-align: center;
   min-height: 100vh;
-  background-image: url(.\\images\\wave.svg);
+  background-image: url('./wave.svg');
 }
