@@ -1,0 +1,39 @@
+.home-outer {
+    min-height: 100vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.header-text, .form-outer {
+    color: #053B50;
+}
+
+.form-outer {
+    text-align: left;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 80%;
+    padding: 0px 10px;
+    border-radius: 5px;
+    background-color: #FFFFFF;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+.age-slider {
+    padding: 0px 15px;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(155, 155, 155, 0.5);
+    border-radius: 20px;
+    border: transparent;
+}

@@ -1,0 +1,56 @@
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(155, 155, 155, 0.5);
+    border-radius: 20px;
+    border: transparent;
+}
+
+.form-container {
+    height: 100%;
+    overflow-y: auto;
+    margin-top: 10px;
+    padding: 5px 10px;
+    color: #053B50;
+}
+
+.select-an-item-text {
+    min-height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button-group {
+    text-align: center;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-bottom: 20px;
+    margin-top: 5px;
+}
+
+.form-outer-selected-items {
+    text-align: left;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.single-value-card {
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: #FFFFFF;
+    transition: height 0.25s linear;
+}
+
+.single-value-card h3 {
+    margin-top: 0px;
+}
