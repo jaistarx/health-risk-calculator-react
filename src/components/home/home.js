@@ -153,7 +153,7 @@ function Home() {
             sx={{
               px: 3,
               pb: 2,
-              height: "525px",
+              height: "510px",
               bgcolor: "#EEEEEE",
               width: "100%",
             }}

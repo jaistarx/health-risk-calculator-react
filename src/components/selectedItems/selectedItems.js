@@ -79,7 +79,7 @@ function SelectedItems({
           sx={{
             px: 3,
             pt: 2,
-            height: "525px",
+            height: "510px",
             display: "flex",
             flexDirection: "column",
             justifyContent: "space-between",
