@@ -2,6 +2,7 @@ import {
     Backdrop,
     Box,
     Button,
+    Collapse,
     Container,
     Fade,
     Modal,
@@ -129,16 +130,28 @@ function SelectedItems({
           }}
         >
           <div className="form-container">
-            {ratingBool.addedRating === 0 && (
-              <div className="select-an-item-text">
-                <h3>
-                  Select an item <br></br>from the list
-                </h3>
-              </div>
-            )}
-            {ratingBool.addedRating !== 0 && (
+            <Collapse
+              in={ratingBool.addedRating === 0}
+              timeout={300}
+              unmountOnExit
+              className="select-an-item-text"
+            >
+              <h3>
+                Select an item <br />
+                from the list
+              </h3>
+            </Collapse>
+            <Collapse
+              in={ratingBool.addedRating !== 0}
+              timeout={300}
+              unmountOnExit
+            >
               <div className="form-outer-selected-items">
-                {selectedItemsList.age.rating !== 0 && (
+                <Collapse
+                  in={selectedItemsList.age.rating !== 0}
+                  timeout={300}
+                  unmountOnExit
+                >
                   <div className="single-value-card">
                     <div
                       className="close-icon"
@@ -149,9 +162,12 @@ function SelectedItems({
                     <h3>Age</h3>
                     <div>{selectedItemsList.age.value}</div>
                   </div>
-                )}
-
-                {selectedItemsList.foodType.rating !== 0 && (
+                </Collapse>
+                <Collapse
+                  in={selectedItemsList.foodType.rating !== 0}
+                  timeout={300}
+                  unmountOnExit
+                >
                   <div className="single-value-card">
                     <div
                       className="close-icon"
@@ -162,8 +178,12 @@ function SelectedItems({
                     <h3>Food Type</h3>
                     <div>{selectedItemsList.foodType.value}</div>
                   </div>
-                )}
-                {selectedItemsList.foodHabits.rating !== 0 && (
+                </Collapse>
+                <Collapse
+                  in={selectedItemsList.foodHabits.rating !== 0}
+                  timeout={300}
+                  unmountOnExit
+                >
                   <div className="single-value-card">
                     <div
                       className="close-icon"
@@ -186,8 +206,12 @@ function SelectedItems({
                       ))}
                     </div>
                   </div>
-                )}
-                {selectedItemsList.existingIllness.rating !== 0 && (
+                </Collapse>
+                <Collapse
+                  in={selectedItemsList.existingIllness.rating !== 0}
+                  timeout={300}
+                  unmountOnExit
+                >
                   <div className="single-value-card">
                     <div
                       className="close-icon"
@@ -211,9 +235,10 @@ function SelectedItems({
                       )}
                     </div>
                   </div>
-                )}
+                </Collapse>
               </div>
-            )}
+            </Collapse>
+            {/* )} */}
           </div>
           <div className="button-group">
             <Button
