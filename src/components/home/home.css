@@ -31,6 +31,9 @@
     text-align: left;
     overflow-y: auto;
     overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     height: 84%;
     padding: 0px 10px;
     border-radius: 5px;

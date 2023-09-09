@@ -11,7 +11,7 @@ import {
   Radio,
   RadioGroup,
   Select,
-  Tooltip
+  Tooltip,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { EXISTING_ILLINESS, FOOD_HABITS } from "../../constants/appConstants";
@@ -134,6 +134,7 @@ function Home() {
 
   useEffect(() => {
     calculateRatingBool();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedItemsList]);
 
   return (
@@ -175,42 +176,6 @@ function Home() {
                 </div>
               </div>
               <div>
-                <h3>Existing Illness</h3>
-                <div>
-                  <FormControl sx={{ m: 1, width: 500 }}>
-                    <InputLabel
-                      color="success"
-                      id="demo-multiple-checkbox-label"
-                    >
-                      Select Illness
-                    </InputLabel>
-                    <Select
-                      labelId="demo-multiple-checkbox-label"
-                      id="demo-multiple-checkbox"
-                      multiple
-                      color="success"
-                      value={illnessNames}
-                      onChange={handleIllnessChange}
-                      input={<OutlinedInput label="Select Illness" />}
-                      renderValue={(selected) => selected.join(", ")}
-                      MenuProps={MenuProps}
-                    >
-                      {EXISTING_ILLINESS.map((illness, index) => (
-                        <MenuItem key={illness.name} value={illness.name}>
-                          <Checkbox
-                            color="success"
-                            checked={illnessNames.indexOf(illness.name) > -1}
-                          />
-                          <Tooltip title={illness.description} arrow>
-                            <ListItemText primary={illness.name} />
-                          </Tooltip>
-                        </MenuItem>
-                      ))}
-                    </Select>
-                  </FormControl>
-                </div>
-              </div>
-              <div>
                 <h3 className="required">Food Type</h3>
                 <RadioGroup
                   aria-labelledby="demo-radio-buttons-group-label"
@@ -234,7 +199,7 @@ function Home() {
               <div>
                 <h3 className="required">Food Habits</h3>
                 <div>
-                  <FormControl sx={{ mx: 1, mt: 1, mb: 3, width: 500 }}>
+                  <FormControl sx={{ mx: 1, mt: 1, width: 500 }}>
                     <InputLabel
                       color="success"
                       id="demo-multiple-checkbox-label"
@@ -260,6 +225,42 @@ function Home() {
                           />
                           <Tooltip title={food.description} arrow>
                             <ListItemText primary={food.name} />
+                          </Tooltip>
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>
+                </div>
+              </div>
+              <div>
+                <h3>Existing Illness</h3>
+                <div>
+                  <FormControl sx={{ mx: 1, mt: 1, mb: 3, width: 500 }}>
+                    <InputLabel
+                      color="success"
+                      id="demo-multiple-checkbox-label"
+                    >
+                      Select Illness
+                    </InputLabel>
+                    <Select
+                      labelId="demo-multiple-checkbox-label"
+                      id="demo-multiple-checkbox"
+                      multiple
+                      color="success"
+                      value={illnessNames}
+                      onChange={handleIllnessChange}
+                      input={<OutlinedInput label="Select Illness" />}
+                      renderValue={(selected) => selected.join(", ")}
+                      MenuProps={MenuProps}
+                    >
+                      {EXISTING_ILLINESS.map((illness, index) => (
+                        <MenuItem key={illness.name} value={illness.name}>
+                          <Checkbox
+                            color="success"
+                            checked={illnessNames.indexOf(illness.name) > -1}
+                          />
+                          <Tooltip title={illness.description} arrow>
+                            <ListItemText primary={illness.name} />
                           </Tooltip>
                         </MenuItem>
                       ))}
