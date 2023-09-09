@@ -49,11 +49,20 @@
     margin-bottom: 20px;
     background-color: #FFFFFF;
     transition: height 0.25s linear;
+    position: relative;
 }
 
 .single-value-card h3 {
     margin-top: 0px;
     margin-bottom: 10px;
+}
+
+.close-icon {
+    position: absolute;
+    top: 9px;
+    right: 12px;
+    cursor: pointer;
+    color: #d32f2f;
 }
 
 .low-text {

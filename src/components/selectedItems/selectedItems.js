@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import React, { useState } from "react";
 import GaugeChart from "react-gauge-chart/dist/GaugeChart";
+import { FaTimes } from "react-icons/fa";
 import "./selectedItems.css";
 
 const style = {
@@ -56,6 +57,42 @@ function SelectedItems({
     setRiskScore(0);
   };
 
+  const handleCloseCard = (key) => {
+    switch (key) {
+      case "existingIllness":
+        setIllnessNames([]);
+        setSelectedItemsList({
+          ...selectedItemsList,
+          existingIllness: {
+            value: [],
+            rating: 0,
+          },
+        });
+        break;
+      case "foodHabits":
+        setFoodHabitNames([]);
+        setSelectedItemsList({
+          ...selectedItemsList,
+          foodHabits: { value: [], rating: 0 },
+        });
+        break;
+      case "foodType":
+        setSelectedItemsList({
+          ...selectedItemsList,
+          foodType: { value: "", rating: 0 },
+        });
+        break;
+      case "age":
+        setSelectedItemsList({
+          ...selectedItemsList,
+          age: { value: 20, rating: 0 },
+        });
+        break;
+      default:
+        break;
+    }
+  };
+
   const handleClearClicked = () => {
     setIllnessNames([]);
     setFoodHabitNames([]);
@@ -98,12 +135,61 @@ function SelectedItems({
               <div className="form-outer-selected-items">
                 {selectedItemsList.age.rating !== 0 && (
                   <div className="single-value-card">
+                    <div
+                      className="close-icon"
+                      onClick={() => handleCloseCard("age")}
+                    >
+                      <FaTimes />
+                    </div>
                     <h3>Age</h3>
                     <div>{selectedItemsList.age.value}</div>
                   </div>
                 )}
+
+                {selectedItemsList.foodType.rating !== 0 && (
+                  <div className="single-value-card">
+                    <div
+                      className="close-icon"
+                      onClick={() => handleCloseCard("foodType")}
+                    >
+                      <FaTimes />
+                    </div>
+                    <h3>Food Type</h3>
+                    <div>{selectedItemsList.foodType.value}</div>
+                  </div>
+                )}
+                {selectedItemsList.foodHabits.rating !== 0 && (
+                  <div className="single-value-card">
+                    <div
+                      className="close-icon"
+                      onClick={() => handleCloseCard("foodHabits")}
+                    >
+                      <FaTimes />
+                    </div>
+                    <h3>Food Habits</h3>
+                    <div>
+                      {selectedItemsList.foodHabits.value.map((name, index) => (
+                        <>
+                          <span>
+                            {name}
+                            {index !==
+                              selectedItemsList.foodHabits.value.length - 1 && (
+                              <>,</>
+                            )}{" "}
+                          </span>
+                        </>
+                      ))}
+                    </div>
+                  </div>
+                )}
                 {selectedItemsList.existingIllness.rating !== 0 && (
                   <div className="single-value-card">
+                    <div
+                      className="close-icon"
+                      onClick={() => handleCloseCard("existingIllness")}
+                    >
+                      <FaTimes />
+                    </div>
                     <h3>Existing Illness</h3>
                     <div>
                       {selectedItemsList.existingIllness.value.map(
@@ -118,30 +204,6 @@ function SelectedItems({
                           </>
                         )
                       )}
-                    </div>
-                  </div>
-                )}
-                {selectedItemsList.foodType.rating !== 0 && (
-                  <div className="single-value-card">
-                    <h3>Food Type</h3>
-                    <div>{selectedItemsList.foodType.value}</div>
-                  </div>
-                )}
-                {selectedItemsList.foodHabits.rating !== 0 && (
-                  <div className="single-value-card">
-                    <h3>Food Habits</h3>
-                    <div>
-                      {selectedItemsList.foodHabits.value.map((name, index) => (
-                        <>
-                          <span>
-                            {name}
-                            {index !==
-                              selectedItemsList.foodHabits.value.length - 1 && (
-                              <>,</>
-                            )}{" "}
-                          </span>
-                        </>
-                      ))}
                     </div>
                   </div>
                 )}
@@ -167,7 +229,7 @@ function SelectedItems({
               onClick={handleClearClicked}
               disabled={!ratingBool.addedRating}
             >
-              Clear
+              Clear All
             </Button>
           </div>
         </Paper>
