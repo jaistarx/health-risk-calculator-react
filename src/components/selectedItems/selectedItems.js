@@ -1,13 +1,13 @@
 import {
-    Backdrop,
-    Box,
-    Button,
-    Collapse,
-    Container,
-    Fade,
-    Modal,
-    Paper,
-    Typography
+  Backdrop,
+  Box,
+  Button,
+  Collapse,
+  Container,
+  Fade,
+  Modal,
+  Paper,
+  Typography,
 } from "@mui/material";
 import React, { useState } from "react";
 import GaugeChart from "react-gauge-chart/dist/GaugeChart";
@@ -141,104 +141,97 @@ function SelectedItems({
                 from the list
               </h3>
             </Collapse>
-            <Collapse
-              in={ratingBool.addedRating !== 0}
-              timeout={300}
-              unmountOnExit
-            >
-              <div className="form-outer-selected-items">
-                <Collapse
-                  in={selectedItemsList.age.rating !== 0}
-                  timeout={300}
-                  unmountOnExit
-                >
-                  <div className="single-value-card">
-                    <div
-                      className="close-icon"
-                      onClick={() => handleCloseCard("age")}
-                    >
-                      <FaTimes />
-                    </div>
-                    <h3>Age</h3>
-                    <div>{selectedItemsList.age.value}</div>
+            <div className="form-outer-selected-items">
+              <Collapse
+                in={selectedItemsList.age.rating !== 0}
+                timeout={300}
+                unmountOnExit
+              >
+                <div className="single-value-card">
+                  <div
+                    className="close-icon"
+                    onClick={() => handleCloseCard("age")}
+                  >
+                    <FaTimes />
                   </div>
-                </Collapse>
-                <Collapse
-                  in={selectedItemsList.foodType.rating !== 0}
-                  timeout={300}
-                  unmountOnExit
-                >
-                  <div className="single-value-card">
-                    <div
-                      className="close-icon"
-                      onClick={() => handleCloseCard("foodType")}
-                    >
-                      <FaTimes />
-                    </div>
-                    <h3>Food Type</h3>
-                    <div>{selectedItemsList.foodType.value}</div>
+                  <h3>Age</h3>
+                  <div>{selectedItemsList.age.value}</div>
+                </div>
+              </Collapse>
+              <Collapse
+                in={selectedItemsList.foodType.rating !== 0}
+                timeout={300}
+                unmountOnExit
+              >
+                <div className="single-value-card">
+                  <div
+                    className="close-icon"
+                    onClick={() => handleCloseCard("foodType")}
+                  >
+                    <FaTimes />
                   </div>
-                </Collapse>
-                <Collapse
-                  in={selectedItemsList.foodHabits.rating !== 0}
-                  timeout={300}
-                  unmountOnExit
-                >
-                  <div className="single-value-card">
-                    <div
-                      className="close-icon"
-                      onClick={() => handleCloseCard("foodHabits")}
-                    >
-                      <FaTimes />
-                    </div>
-                    <h3>Food Habits</h3>
-                    <div>
-                      {selectedItemsList.foodHabits.value.map((name, index) => (
+                  <h3>Food Type</h3>
+                  <div>{selectedItemsList.foodType.value}</div>
+                </div>
+              </Collapse>
+              <Collapse
+                in={selectedItemsList.foodHabits.rating !== 0}
+                timeout={300}
+                unmountOnExit
+              >
+                <div className="single-value-card">
+                  <div
+                    className="close-icon"
+                    onClick={() => handleCloseCard("foodHabits")}
+                  >
+                    <FaTimes />
+                  </div>
+                  <h3>Food Habits</h3>
+                  <div>
+                    {selectedItemsList.foodHabits.value.map((name, index) => (
+                      <>
+                        <span>
+                          {name}
+                          {index !==
+                            selectedItemsList.foodHabits.value.length - 1 && (
+                            <>,</>
+                          )}{" "}
+                        </span>
+                      </>
+                    ))}
+                  </div>
+                </div>
+              </Collapse>
+              <Collapse
+                in={selectedItemsList.existingIllness.rating !== 0}
+                timeout={300}
+                unmountOnExit
+              >
+                <div className="single-value-card">
+                  <div
+                    className="close-icon"
+                    onClick={() => handleCloseCard("existingIllness")}
+                  >
+                    <FaTimes />
+                  </div>
+                  <h3>Existing Illness</h3>
+                  <div>
+                    {selectedItemsList.existingIllness.value.map(
+                      (name, index) => (
                         <>
                           <span>
                             {name}
                             {index !==
-                              selectedItemsList.foodHabits.value.length - 1 && (
-                              <>,</>
-                            )}{" "}
+                              selectedItemsList.existingIllness.value.length -
+                                1 && <>,</>}{" "}
                           </span>
                         </>
-                      ))}
-                    </div>
+                      )
+                    )}
                   </div>
-                </Collapse>
-                <Collapse
-                  in={selectedItemsList.existingIllness.rating !== 0}
-                  timeout={300}
-                  unmountOnExit
-                >
-                  <div className="single-value-card">
-                    <div
-                      className="close-icon"
-                      onClick={() => handleCloseCard("existingIllness")}
-                    >
-                      <FaTimes />
-                    </div>
-                    <h3>Existing Illness</h3>
-                    <div>
-                      {selectedItemsList.existingIllness.value.map(
-                        (name, index) => (
-                          <>
-                            <span>
-                              {name}
-                              {index !==
-                                selectedItemsList.existingIllness.value.length -
-                                  1 && <>,</>}{" "}
-                            </span>
-                          </>
-                        )
-                      )}
-                    </div>
-                  </div>
-                </Collapse>
-              </div>
-            </Collapse>
-            {/* )} */}
+                </div>
+              </Collapse>
+            </div>
           </div>
           <div className="button-group">
             <Button
