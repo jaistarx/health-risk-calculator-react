@@ -11,7 +11,7 @@ import {
   Radio,
   RadioGroup,
   Select,
-  Tooltip,
+  Tooltip
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { EXISTING_ILLINESS, FOOD_HABITS } from "../../constants/appConstants";
@@ -84,7 +84,7 @@ function Home() {
           : 0,
       },
     });
-    console.log(selectedItemsList)
+    console.log(selectedItemsList);
     calculateRatingBool();
   };
 
@@ -145,7 +145,6 @@ function Home() {
             display: "flex",
             alignItems: "center",
             mr: 0,
-            my: 3,
           }}
         >
           <Paper
@@ -153,7 +152,7 @@ function Home() {
             sx={{
               px: 3,
               pb: 2,
-              height: "500px",
+              height: "525px",
               bgcolor: "#EEEEEE",
               width: "100%",
             }}

@@ -1,12 +1,12 @@
 import {
-  Backdrop,
-  Box,
-  Button,
-  Container,
-  Fade,
-  Modal,
-  Paper,
-  Typography,
+    Backdrop,
+    Box,
+    Button,
+    Container,
+    Fade,
+    Modal,
+    Paper,
+    Typography
 } from "@mui/material";
 import React, { useState } from "react";
 import GaugeChart from "react-gauge-chart/dist/GaugeChart";
@@ -17,7 +17,8 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 800,
+  width: "65%",
+  height: "80%",
   bgcolor: "#053B50",
   color: "white",
   border: "1px solid #000",
@@ -78,7 +79,7 @@ function SelectedItems({
           sx={{
             px: 3,
             pt: 2,
-            height: "500px",
+            height: "525px",
             display: "flex",
             flexDirection: "column",
             justifyContent: "space-between",
@@ -187,7 +188,7 @@ function SelectedItems({
         <Fade in={openModal}>
           <Box sx={style}>
             <Typography id="transition-modal-title" variant="h6" component="h2">
-              Your Health Risk Score is
+              Your Health Risk Score
             </Typography>
             <GaugeChart
               id="gauge-chart1"
@@ -204,14 +205,37 @@ function SelectedItems({
               id="transition-modal-description"
               sx={{ mt: 2 }}
             >
-              {riskScore >= 0 && riskScore <= 0.33 && (
-                <h4>Congrats!...Your Health Risk Score is <span className="low-text">Low</span></h4>
-              )}
-              {riskScore >= 0.34 && riskScore <= 0.64 && (
-                <h4>Your Health Risk Score is <span className="medium-text">Medium</span></h4>
-              )}
-              {riskScore >= 0.65 && riskScore <= 1 && (
-                <h4>Your Health Risk Score is <span className="high-text">High</span>...Its time to do something!</h4>
+              {riskScore !== 0 && (
+                <>
+                  {riskScore >= 0 && riskScore <= 0.33 && (
+                    <h4>
+                      Congrats!...Your Health Risk Score is{" "}
+                      <span className="low-text">Low</span>
+                    </h4>
+                  )}
+                  {riskScore >= 0.34 && riskScore <= 0.64 && (
+                    <h4>
+                      Your Health Risk Score is{" "}
+                      <span className="medium-text">Medium</span>
+                    </h4>
+                  )}
+                  {riskScore >= 0.65 && riskScore <= 1 && (
+                    <h4>
+                      Your Health Risk Score is{" "}
+                      <span className="high-text">High</span>...Its time to do
+                      something!
+                    </h4>
+                  )}
+                  {riskScore === 0 && (
+                    <>
+                      <h4>
+                        Your Health Risk Score is{" "}
+                        <span className="high-text">High</span>...Its time to do
+                        something!
+                      </h4>
+                    </>
+                  )}
+                </>
               )}
             </Typography>
           </Box>
