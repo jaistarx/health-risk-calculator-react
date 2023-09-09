@@ -108,6 +108,11 @@ function SelectedItems({
     });
   };
 
+  const handleCloseModalAndClear = () => {
+    handleClearClicked();
+    handleCloseModal();
+  };
+
   return (
     <>
       <Container sx={{ height: "100%", width: "30%", ml: 0 }}>
@@ -265,36 +270,70 @@ function SelectedItems({
             <Typography
               className="indicator-text"
               id="transition-modal-description"
-              sx={{ mt: 2 }}
+              sx={{ mt: 0 }}
             >
               {riskScore !== 0 && (
                 <>
                   {riskScore >= 0 && riskScore <= 0.33 && (
-                    <h4>
-                      Congrats!...Your Health Risk Score is{" "}
-                      <span className="low-text">Low</span>
-                    </h4>
+                    <>
+                      <h4>
+                        Congrats!...Your Health Risk Score is{" "}
+                        <span className="low-text">LOW</span>
+                      </h4>
+                      <Button
+                        variant="contained"
+                        sx={{
+                          width: "20%",
+                          bgcolor: "#00ff00",
+                          color: "#000000",
+                          "&:hover": { bgcolor: "#00ea00" },
+                        }}
+                        onClick={handleCloseModalAndClear}
+                      >
+                        Ok
+                      </Button>
+                    </>
                   )}
                   {riskScore >= 0.34 && riskScore <= 0.64 && (
-                    <h4>
-                      Your Health Risk Score is{" "}
-                      <span className="medium-text">Medium</span>
-                    </h4>
-                  )}
-                  {riskScore >= 0.65 && riskScore <= 1 && (
-                    <h4>
-                      Your Health Risk Score is{" "}
-                      <span className="high-text">High</span>...Its time to do
-                      something!
-                    </h4>
-                  )}
-                  {riskScore === 0 && (
                     <>
                       <h4>
                         Your Health Risk Score is{" "}
-                        <span className="high-text">High</span>...Its time to do
+                        <span className="medium-text">MEDIUM</span>
+                      </h4>
+                      <Button
+                        variant="contained"
+                        color="info"
+                        sx={{
+                          width: "20%",
+                          bgcolor: "#f2ff00",
+                          color: "#000000",
+                          "&:hover": { bgcolor: "#deea00" },
+                        }}
+                        onClick={handleCloseModalAndClear}
+                      >
+                        Ok
+                      </Button>
+                    </>
+                  )}
+                  {riskScore >= 0.65 && riskScore <= 1 && (
+                    <>
+                      <h4>
+                        Your Health Risk Score is{" "}
+                        <span className="high-text">HIGH</span>...Its time to do
                         something!
                       </h4>
+                      <Button
+                        variant="contained"
+                        color="error"
+                        sx={{
+                          width: "20%",
+                          bgcolor: "#ff0000",
+                          "&:hover": { bgcolor: "#e60000" },
+                        }}
+                        onClick={handleCloseModalAndClear}
+                      >
+                        Ok
+                      </Button>
                     </>
                   )}
                 </>
