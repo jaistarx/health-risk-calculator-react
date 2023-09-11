@@ -29,19 +29,19 @@ export const EXISTING_ILLINESS = [
 export const FOOD_HABITS = [
   {
     name: "Home Cooked Food",
-    rating: 0.1,
+    rating: 0.2,
     description:
       "Home-cooked food refers to meals that are prepared and cooked in the comfort of one's own home, using fresh ingredients and personal recipes. It embodies the essence of homemade goodness, often reflecting the unique flavors and traditions of a family or culture.",
   },
   {
     name: "Fast Food",
-    rating: 0.9,
+    rating: 0.8,
     description:
       "Fast food is a popular and convenient category of food that is typically prepared and served quickly, making it a go-to choice for people on the go. It often includes items like hamburgers, fries, pizza, fried chicken, and sandwiches, which are known for their affordability and rapid preparation.",
   },
   {
     name: "Regular Eat Out",
-    rating: 0.9,
+    rating: 0.5,
     description:
       "Regular Eat Out is a culinary experience that beckons food enthusiasts to savor a variety of delectable dishes in a warm and inviting ambiance. Regular Eat Out offers a diverse menu of mouthwatering options to cater to every palate",
   },

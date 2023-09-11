@@ -312,7 +312,7 @@ function SelectedItems({
                       </Button>
                     </>
                   )}
-                  {riskScore >= 0.56 && riskScore <= 0.81 && (
+                  {riskScore >= 0.56 && riskScore <= 0.84 && (
                     <>
                       <h4>
                         Your Health Risk Score is{" "}
@@ -333,7 +333,7 @@ function SelectedItems({
                       </Button>
                     </>
                   )}
-                  {riskScore >= 0.82 && (
+                  {riskScore >= 0.85 && (
                     <>
                       <h4>
                         Your Health Risk Score is{" "}
