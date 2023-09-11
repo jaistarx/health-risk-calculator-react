@@ -92,10 +92,10 @@ function Home() {
     let givenRating;
     switch (newFoodType) {
       case "Vegetarian":
-        givenRating = 0.3;
+        givenRating = 0.1;
         break;
       case "Non-Vegetarian":
-        givenRating = 0.5;
+        givenRating = 0.3;
         break;
       default:
         givenRating = 0;

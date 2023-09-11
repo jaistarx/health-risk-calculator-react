@@ -46,9 +46,8 @@ function SelectedItems({
     Object.values(selectedItemsList).forEach((value) => {
       totalRating += value.rating;
     });
-
     setRiskScore(
-      (totalRating / Object.keys(selectedItemsList).length).toFixed(2)
+      ((totalRating / Object.keys(selectedItemsList).length) * 2).toFixed(2)
     );
     setOpenModal(true);
   };
@@ -280,7 +279,8 @@ function SelectedItems({
               nrOfLevels={20}
               arcPadding={0.02}
               animDelay={0}
-              percent={riskScore}
+              colors={["#80ff00", "#FF0000"]}
+              percent={riskScore / 2}
               formatTextValue={() => riskScore}
               needleColor="#176B87"
               needleBaseColor="#64CCC5"
@@ -292,7 +292,7 @@ function SelectedItems({
             >
               {riskScore !== 0 && (
                 <>
-                  {riskScore >= 0 && riskScore <= 0.33 && (
+                  {riskScore <= 0.55 && (
                     <>
                       <h4>
                         Congrats!...Your Health Risk Score is{" "}
@@ -302,7 +302,7 @@ function SelectedItems({
                         variant="contained"
                         sx={{
                           width: "20%",
-                          bgcolor: "#00ff00",
+                          bgcolor: "#80ff00",
                           color: "#000000",
                           "&:hover": { bgcolor: "#00ea00" },
                         }}
@@ -312,7 +312,7 @@ function SelectedItems({
                       </Button>
                     </>
                   )}
-                  {riskScore >= 0.34 && riskScore <= 0.64 && (
+                  {riskScore >= 0.56 && riskScore <= 0.81 && (
                     <>
                       <h4>
                         Your Health Risk Score is{" "}
@@ -333,7 +333,7 @@ function SelectedItems({
                       </Button>
                     </>
                   )}
-                  {riskScore >= 0.65 && riskScore <= 1 && (
+                  {riskScore >= 0.82 && (
                     <>
                       <h4>
                         Your Health Risk Score is{" "}
