@@ -54,13 +54,23 @@ function Home() {
     const selectedIllnessList =
       typeof illnessValue === "string" ? illnessValue.split(",") : illnessValue;
     setIllnessNames(selectedIllnessList);
+    let givenRatingMax = 0;
+    selectedIllnessList.forEach((element) => {
+      const givenRating = getRatingFromList(EXISTING_ILLINESS, element);
+      if (givenRating > givenRatingMax) {
+        givenRatingMax = givenRating;
+      }
+    });
     setSelectedItemsList({
       ...selectedItemsList,
       existingIllness: {
         value: selectedIllnessList,
-        rating: selectedIllnessList.length / EXISTING_ILLINESS.length,
+        rating: selectedIllnessList.length
+          ? givenRatingMax
+          : 0,
       },
     });
+    console.log(selectedItemsList);
     calculateRatingBool();
   };
 
@@ -71,16 +81,19 @@ function Home() {
         ? foodHabitValue.split(",")
         : foodHabitValue;
     setFoodHabitNames(selectedFoodHabitList);
-    let givenRatingAdded = 0;
+    let givenRatingMax = 0;
     selectedFoodHabitList.forEach((element) => {
-      givenRatingAdded += getRatingFromList(FOOD_HABITS, element);
+      const givenRating = getRatingFromList(FOOD_HABITS, element);
+      if (givenRating > givenRatingMax) {
+        givenRatingMax = givenRating;
+      }
     });
     setSelectedItemsList({
       ...selectedItemsList,
       foodHabits: {
         value: selectedFoodHabitList,
         rating: selectedFoodHabitList.length
-          ? givenRatingAdded / selectedFoodHabitList.length
+          ? givenRatingMax
           : 0,
       },
     });

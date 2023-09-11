@@ -1,26 +1,31 @@
 export const EXISTING_ILLINESS = [
   {
     name: "Blood Pressure",
+    rating: 0.4,
     description:
       "Blood pressure is a vital physiological measurement that reflects the force of blood against the walls of our arteries as the heart pumps it throughout the body. It is typically expressed as two values: systolic pressure (the higher number) represents the pressure during a heartbeat when the heart contracts, while diastolic pressure (the lower number) signifies the pressure between heartbeats when the heart is at rest.",
   },
   {
     name: "Diabetics",
+    rating: 0.5,
     description:
       "Diabetes is a chronic medical condition characterized by elevated levels of glucose (sugar) in the blood. It occurs when the body either doesn't produce enough insulin (a hormone that regulates blood sugar) or doesn't use it effectively.",
   },
   {
     name: "Heart Issue",
+    rating: 1,
     description:
       "Heart issues, often referred to as cardiovascular problems, encompass a range of conditions that affect the heart's structure and function. These issues can have a profound impact on one's overall health and quality of life. Common heart problems include coronary artery disease, heart failure, arrhythmias, and valvular disorders.",
   },
   {
     name: "Arthritis",
+    rating: 0.3,
     description:
       "Arthritis is a common medical condition characterized by inflammation and pain in one or more joints of the body. It is not a single disease but rather a term that encompasses over 100 different types of joint disorders. The most prevalent forms of arthritis are osteoarthritis and rheumatoid arthritis.",
   },
   {
     name: "Kidney Related Issues",
+    rating: 1,
     description:
       "Kidney-related issues encompass a wide range of medical conditions and concerns that affect the kidneys, vital organs responsible for filtering waste and excess fluids from the bloodstream.",
   },
@@ -29,7 +34,7 @@ export const EXISTING_ILLINESS = [
 export const FOOD_HABITS = [
   {
     name: "Home Cooked Food",
-    rating: 0.2,
+    rating: 0.3,
     description:
       "Home-cooked food refers to meals that are prepared and cooked in the comfort of one's own home, using fresh ingredients and personal recipes. It embodies the essence of homemade goodness, often reflecting the unique flavors and traditions of a family or culture.",
   },
@@ -41,7 +46,7 @@ export const FOOD_HABITS = [
   },
   {
     name: "Regular Eat Out",
-    rating: 0.5,
+    rating: 0.4,
     description:
       "Regular Eat Out is a culinary experience that beckons food enthusiasts to savor a variety of delectable dishes in a warm and inviting ambiance. Regular Eat Out offers a diverse menu of mouthwatering options to cater to every palate",
   },
